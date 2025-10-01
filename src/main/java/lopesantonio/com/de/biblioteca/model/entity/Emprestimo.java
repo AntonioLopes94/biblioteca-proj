@@ -14,6 +14,9 @@ public class Emprestimo {
 
     private double multa;
 
+    public Emprestimo(Usuario usuario, Livro livro) {
+    }
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
