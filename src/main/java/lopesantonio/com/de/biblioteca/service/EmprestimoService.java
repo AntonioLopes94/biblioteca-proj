@@ -18,7 +18,9 @@ public class EmprestimoService {
 
     @Autowired
     private EmprestimoRepository emprestimoRepository;
+    @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
     private LivroRepository livroRepository;
 
     private double calcularMulta(Long diasDeAtraso){
@@ -32,9 +34,13 @@ public class EmprestimoService {
         if(devolucaoEfetiva.isAfter(dataDevolucaoPrevista)){
             var diasDeAtraso = ChronoUnit.DAYS.between(dataDevolucaoPrevista, devolucaoEfetiva);
             emprestimo.setMulta(calcularMulta(diasDeAtraso));
+
         }else {
             emprestimo.setMulta(0);
         }
+        Livro livro = emprestimo.getLivro();
+        livro.setStatus(Livro.StatusLivro.DISPONIVEL);
+        livroRepository.save(livro);
         emprestimoRepository.save(emprestimo);
     }
 

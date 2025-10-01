@@ -41,4 +41,8 @@ public class Emprestimo {
     public void setMulta(double multa) {
         this.multa = multa;
     }
+
+    public Livro getLivro() {
+        return this.livro;
+    }
 }
