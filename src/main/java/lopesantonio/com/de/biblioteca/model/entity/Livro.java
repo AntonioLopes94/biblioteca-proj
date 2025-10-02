@@ -2,6 +2,9 @@ package lopesantonio.com.de.biblioteca.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -18,6 +21,9 @@ public class Livro {
     @Column(name = "status", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private StatusLivro status = StatusLivro.DISPONIVEL;
+
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Emprestimo> emprestimos = new ArrayList<>();
 
     public void setStatus(Enum status) {
         this.status = (StatusLivro) status;
