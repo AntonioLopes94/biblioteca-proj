@@ -1,6 +1,7 @@
 package lopesantonio.com.de.biblioteca.controller;
 
 import jakarta.validation.Valid;
+import lopesantonio.com.de.biblioteca.model.entity.Emprestimo;
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
 import lopesantonio.com.de.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,11 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(livroSalvo);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/{id}")
     public ResponseEntity<Livro> deletar(@PathVariable Long id){
         livroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
-
 
 
 }
