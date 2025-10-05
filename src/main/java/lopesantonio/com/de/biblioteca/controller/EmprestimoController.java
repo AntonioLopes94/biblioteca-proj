@@ -1,5 +1,6 @@
 package lopesantonio.com.de.biblioteca.controller;
 
+import jakarta.validation.Valid;
 import lopesantonio.com.de.biblioteca.model.entity.Emprestimo;
 import lopesantonio.com.de.biblioteca.service.EmprestimoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,15 @@ public class EmprestimoController {
         return ResponseEntity.of(Optional.ofNullable(emprestimos));
     }
 
-    @PostMapping("/api/emprestimos/{id}&{id2}")
-    public ResponseEntity<Emprestimo> criarEmprestimo(Long idUsuario,Long idLivro){
-        Emprestimo emprestimoRegistro = emprestimoService.registrarEmprestimo(idUsuario, idLivro);
-        return ResponseEntity.ok(emprestimoRegistro);
-
+    @PostMapping("/{idUsuario}-{idLivro}")
+    public ResponseEntity<?> criarEmprestimo(@PathVariable Long idUsuario, @PathVariable Long idLivro){
+        try {
+            Emprestimo emprestimoRegistro = emprestimoService.registrarEmprestimo(idUsuario, idLivro);
+            return ResponseEntity.ok(emprestimoRegistro);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Erro: "+ e.getMessage());
+        }
     }
+
+
 }

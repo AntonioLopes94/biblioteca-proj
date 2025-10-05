@@ -49,14 +49,17 @@ public class EmprestimoService {
     public Emprestimo registrarEmprestimo(Long idUsuario, Long idLivro){
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado"));
         Livro livro = livroRepository.findById(idLivro).orElseThrow(() -> new IllegalArgumentException("Livro não encontrado"));
-
         if(livro.getStatus() != Livro.StatusLivro.DISPONIVEL){
             throw new IllegalStateException("Livro não está disponível");
         }
         Emprestimo emprestimo = new Emprestimo(usuario, livro);
+        emprestimo.setUsuario(usuario);
+        emprestimo.setLivro(livro);
+        emprestimo.setDataEmprestimo(LocalDate.now());
+        emprestimo.setDataDevolucaoPrevista(LocalDate.now().plusDays(15));
+        Emprestimo emprestimoSalvo = emprestimoRepository.save(emprestimo);
         livro.setStatus(Livro.StatusLivro.EMPRESTADO);
         livroRepository.save(livro);
-        Emprestimo emprestimoSalvo = emprestimoRepository.save(emprestimo);
         return emprestimoSalvo;
     }
 

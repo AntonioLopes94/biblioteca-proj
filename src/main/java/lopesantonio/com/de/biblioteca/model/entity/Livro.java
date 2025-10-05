@@ -25,11 +25,6 @@ public class Livro {
     @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
-    public void setStatus(Enum status) {
-        this.status = (StatusLivro) status;
-    }
-
-
     public StatusLivro getStatus() {
         return status;
     }
@@ -38,7 +33,7 @@ public class Livro {
         EMPRESTADO,
         DISPONIVEL;
     }
-    
+
     public void setStatus(){}
 
 
@@ -46,26 +41,27 @@ public class Livro {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setStatus(StatusLivro status) {
+        this.status = status;
+    }
     public String getTitulo() {
         return titulo;
     }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
     public String getAutor() {
         return autor;
     }
-
     public void setAutor(String autor) {
         this.autor = autor;
     }
-
     public String getGenero() {
         return genero;
     }
-
     public void setGenero(String genero) {
         this.genero = genero;
     }

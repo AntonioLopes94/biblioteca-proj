@@ -24,9 +24,14 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario){
-        Usuario usuarioSalvo = usuarioService.salvar(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    public ResponseEntity<?> criar(@Valid @RequestBody Usuario usuario){
+       try {
+           Usuario usuarioSalvo = usuarioService.salvar(usuario);
+           return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+       }
+       catch (Exception e){
+           return ResponseEntity.badRequest().body("Erro: " + e.getMessage());
+       }
     }
 
     @DeleteMapping("/api/{id}")
