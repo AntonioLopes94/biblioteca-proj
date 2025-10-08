@@ -66,4 +66,9 @@ public class EmprestimoService {
     public List<Emprestimo> listarTodos() {
         return emprestimoRepository.findAll();
     }
+
+    public void deletar(Long id) {
+        Emprestimo emprestimo = emprestimoRepository.findById(id).orElseThrow(() -> new RuntimeException("Emprestimo nao encontrado"));
+        emprestimoRepository.delete(emprestimo);
+    }
 }
