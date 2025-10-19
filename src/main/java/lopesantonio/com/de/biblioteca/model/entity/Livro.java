@@ -16,7 +16,7 @@ public class Livro {
     private String titulo;
     @Column(name = "autor", nullable = false, length = 250)
     private String autor;
-    @Column(name = "genero", nullable = true, length = 100)
+    @Column(name = "genero", length = 100)
     private String genero;
     @Column(name = "status", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
@@ -31,7 +31,7 @@ public class Livro {
 
     public enum StatusLivro {
         EMPRESTADO,
-        DISPONIVEL;
+        DISPONIVEL
     }
 
     public void setStatus(){}

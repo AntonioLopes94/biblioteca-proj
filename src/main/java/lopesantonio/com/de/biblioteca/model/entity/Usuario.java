@@ -18,10 +18,10 @@ public class Usuario {
     private String email;
     @Column(name = "telefone", nullable = false, length = 250)
     private String telefone;
-    @Column(name = "multa_acumulada", nullable = true, length = 250)
+    @Column(name = "multa_acumulada", length = 250)
     private double multaAcumulada;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = false)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
     //G&S
