@@ -1,4 +1,6 @@
 package lopesantonio.com.de.biblioteca.model.dto.response;
 
-public record UsuarioSumarioResponse() {
+public record UsuarioSumarioResponse(
+
+) {
 }

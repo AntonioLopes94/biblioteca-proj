@@ -1,7 +1,8 @@
 package lopesantonio.com.de.biblioteca.controller;
 
 import jakarta.validation.Valid;
-import lopesantonio.com.de.biblioteca.model.entity.Emprestimo;
+import lopesantonio.com.de.biblioteca.model.dto.request.LivroRequest;
+import lopesantonio.com.de.biblioteca.model.dto.response.LivroResponse;
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
 import lopesantonio.com.de.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/livros")
@@ -19,15 +19,17 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public ResponseEntity<List<Livro>> listarTodos(){
+    public ResponseEntity<List<LivroResponse>> getTodosLivros(){
         List<Livro> livros = livroService.listarTodos();
-        return ResponseEntity.of(Optional.ofNullable(livros));
+        List<LivroResponse> response = LivroResponse.fromEntities(livros);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<Livro> criar(@Valid @RequestBody Livro livro){
-        Livro livroSalvo = livroService.salvar(livro);
-        return ResponseEntity.status(HttpStatus.CREATED).body(livroSalvo);
+    public ResponseEntity<LivroResponse> criarLivro(@Valid @RequestBody LivroRequest request){
+        Livro livro = livroService.salvar(request);
+        LivroResponse response  = LivroResponse.fromEntity(livro);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @DeleteMapping("/api/{id}")
