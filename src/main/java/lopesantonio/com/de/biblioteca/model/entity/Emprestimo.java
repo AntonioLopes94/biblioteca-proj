@@ -1,5 +1,6 @@
 package lopesantonio.com.de.biblioteca.model.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -21,15 +22,17 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     @Column(name = "data_devolucao")
     private LocalDate dataDevolucao;
-    @Column(name = "data_devolucao_prevista")
+    @Column(name = "data_devolucao_prevista", nullable = false)
     private LocalDate dataDevolucaoPrevista;
 
-    @Column(name = "multa")
-    private Double multa = 0.0;
+    @Column(name = "multa", columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
+    private double multa;
 
     public Emprestimo(Usuario usuario, Livro livro) {
         this.usuario = usuario;
         this.livro = livro;
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucaoPrevista = LocalDate.now().plusDays(15);
     }
 
     public Emprestimo(){};

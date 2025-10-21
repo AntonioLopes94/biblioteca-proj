@@ -18,7 +18,7 @@ public class Usuario {
     private String email;
     @Column(name = "telefone", nullable = false, length = 50)
     private String telefone;
-    @Column(name = "multa_acumulada", length = 250)
+    @Column(name = "multa_acumulada", columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
     private double multaAcumulada;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

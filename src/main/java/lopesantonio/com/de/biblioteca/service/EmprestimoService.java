@@ -37,7 +37,7 @@ public class EmprestimoService {
             emprestimo.setMulta(calcularMulta(diasDeAtraso));
 
         }else {
-            emprestimo.setMulta(0);
+            emprestimo.setMulta(0.0);
         }
         Livro livro = emprestimo.getLivro();
         livro.setStatus(Livro.StatusLivro.DISPONIVEL);
@@ -55,8 +55,6 @@ public class EmprestimoService {
         Emprestimo emprestimo = new Emprestimo(usuario, livro);
         emprestimo.setUsuario(usuario);
         emprestimo.setLivro(livro);
-        emprestimo.setDataEmprestimo(LocalDate.now());
-        emprestimo.setDataDevolucaoPrevista(LocalDate.now().plusDays(15));
         Emprestimo emprestimoSalvo = emprestimoRepository.save(emprestimo);
         livro.setStatus(Livro.StatusLivro.EMPRESTADO);
         livroRepository.save(livro);
