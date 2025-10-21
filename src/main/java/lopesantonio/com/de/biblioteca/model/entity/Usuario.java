@@ -25,6 +25,10 @@ public class Usuario {
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
     //G&S
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Long getId() {
         return id;
     }

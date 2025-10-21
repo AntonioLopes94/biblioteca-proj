@@ -1,6 +1,7 @@
 package lopesantonio.com.de.biblioteca.controller;
 
 import jakarta.validation.Valid;
+import lopesantonio.com.de.biblioteca.model.dto.UsuarioDTO;
 import lopesantonio.com.de.biblioteca.model.entity.Usuario;
 import lopesantonio.com.de.biblioteca.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -17,17 +17,20 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarTodos(){
+    public ResponseEntity<List<UsuarioDTO>> listarTodos(){
         List<Usuario> usuarios = usuarioService.listarTodos();
-        return ResponseEntity.of(Optional.ofNullable(usuarios));
+        List<UsuarioDTO> response = UsuarioDTO.fromEntities(usuarios);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<?> criar(@Valid @RequestBody Usuario usuario){
+    public ResponseEntity<?> criar(@Valid @RequestBody UsuarioDTO request){
        try {
-           Usuario usuarioSalvo = usuarioService.salvar(usuario);
-           return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+           Usuario usuarioSalvo = usuarioService.salvar(request);
+           UsuarioDTO response = UsuarioDTO.fromEntity(usuarioSalvo);
+           return ResponseEntity.status(HttpStatus.CREATED).body(response);
        }
        catch (Exception e){
            return ResponseEntity.badRequest().body("Erro: " + e.getMessage());

@@ -1,7 +1,6 @@
 package lopesantonio.com.de.biblioteca.service;
 
-import lopesantonio.com.de.biblioteca.model.dto.request.LivroRequest;
-import lopesantonio.com.de.biblioteca.model.dto.response.LivroResponse;
+import lopesantonio.com.de.biblioteca.model.dto.LivroDTO;
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
 import lopesantonio.com.de.biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ public class LivroService {
     public List<Livro> listarTodos() {
         return livroRepository.findAll();
     }
-    public Livro salvar(LivroRequest request) {
+    public Livro salvar(LivroDTO request) {
         Livro livro = new Livro();
         livro.setTitulo(request.titulo());
         livro.setGenero(request.genero());

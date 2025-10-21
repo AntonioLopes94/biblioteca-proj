@@ -1,18 +1,19 @@
-package lopesantonio.com.de.biblioteca.model.dto.response;
+package lopesantonio.com.de.biblioteca.model.dto;
 
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
 
 import java.util.List;
 
-public record LivroResponse(
+public record LivroDTO(
         Long id,
         String titulo,
         String autor,
         String genero,
-        Livro.StatusLivro status
-) {
-    public static LivroResponse fromEntity(Livro livro) {
-        return new LivroResponse(
+        Livro.StatusLivro status) {
+
+
+    public static LivroDTO fromEntity(Livro livro) {
+        return new LivroDTO(
                 livro.getId(),
                 livro.getTitulo(),
                 livro.getAutor(),
@@ -21,9 +22,10 @@ public record LivroResponse(
 
         );
     }
-    public static List<LivroResponse> fromEntities(List<Livro> livros) {
+    public static List<LivroDTO> fromEntities(List<Livro> livros) {
         return livros.stream()
-                .map(LivroResponse::fromEntity)
+                .map(LivroDTO::fromEntity)
                 .toList();
     }
+
 }
