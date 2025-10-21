@@ -5,6 +5,7 @@ import lopesantonio.com.de.biblioteca.model.entity.Livro;
 import java.util.List;
 
 public record LivroResponse(
+        Long id,
         String titulo,
         String autor,
         String genero,
@@ -12,10 +13,12 @@ public record LivroResponse(
 ) {
     public static LivroResponse fromEntity(Livro livro) {
         return new LivroResponse(
+                livro.getId(),
                 livro.getTitulo(),
                 livro.getAutor(),
                 livro.getGenero(),
                 livro.getStatus()
+
         );
     }
     public static List<LivroResponse> fromEntities(List<Livro> livros) {

@@ -16,7 +16,7 @@ public class Usuario {
     private String nome;
     @Column(name = "email", nullable = false, length = 250)
     private String email;
-    @Column(name = "telefone", nullable = false, length = 250)
+    @Column(name = "telefone", nullable = false, length = 50)
     private String telefone;
     @Column(name = "multa_acumulada", length = 250)
     private double multaAcumulada;

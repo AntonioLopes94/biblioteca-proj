@@ -32,8 +32,8 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @DeleteMapping("/api/{id}")
-    public ResponseEntity<Livro> deletar(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         livroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
