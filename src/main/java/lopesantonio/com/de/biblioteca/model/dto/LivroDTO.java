@@ -12,6 +12,7 @@ public record LivroDTO(
         Livro.StatusLivro status) {
 
 
+
     public static LivroDTO fromEntity(Livro livro) {
         return new LivroDTO(
                 livro.getId(),

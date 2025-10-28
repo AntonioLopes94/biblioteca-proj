@@ -18,17 +18,19 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public ResponseEntity<List<LivroDTO>> getTodosLivros(){
-        List<Livro> livros = livroService.listarTodos();
-        List<LivroDTO> response = LivroDTO.fromEntities(livros);
+    public ResponseEntity<List<LivroDTO>> listarTodos(){
+        List<LivroDTO> response = livroService.listarTodos();
         return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<LivroDTO> criarLivro(@Valid @RequestBody LivroDTO request){
-        Livro livroSalvo = livroService.salvar(request);
-        LivroDTO response = LivroDTO.fromEntity(livroSalvo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> criarLivro(@Valid @RequestBody LivroDTO request){
+        try {
+            LivroDTO response = livroService.salvar(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro: " + e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -20,16 +20,14 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> listarTodos(){
-        List<Usuario> usuarios = usuarioService.listarTodos();
-        List<UsuarioDTO> response = UsuarioDTO.fromEntities(usuarios);
-        return ResponseEntity.ok(response);
+        List<UsuarioDTO> usuarios = usuarioService.listarTodos();
+        return ResponseEntity.ok(usuarios);
     }
 
     @PostMapping
     public ResponseEntity<?> criar(@Valid @RequestBody UsuarioDTO request){
        try {
-           Usuario usuarioSalvo = usuarioService.salvar(request);
-           UsuarioDTO response = UsuarioDTO.fromEntity(usuarioSalvo);
+           UsuarioDTO response = usuarioService.salvar(request);
            return ResponseEntity.status(HttpStatus.CREATED).body(response);
        }
        catch (Exception e){

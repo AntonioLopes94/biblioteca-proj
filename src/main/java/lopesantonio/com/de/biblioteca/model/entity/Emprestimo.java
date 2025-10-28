@@ -79,11 +79,8 @@ public class Emprestimo {
     public void setDataDevolucaoPrevista(LocalDate localDate){
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
     }
-    public Double getMulta() {
+    public double getMulta() {
         return multa;
-    }
-    public void setMulta(Double multa) {
-        this.multa = multa;
     }
     public Livro getLivro() {
         return this.livro;

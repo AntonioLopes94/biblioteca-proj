@@ -19,8 +19,7 @@ public class EmprestimoController {
 
     @GetMapping
     public ResponseEntity<List<EmprestimoDTO>> listarTodos(){
-        List<Emprestimo> emprestimos = emprestimoService.listarTodos();
-        List<EmprestimoDTO> response = EmprestimoDTO.fromEntities(emprestimos);
+           List<EmprestimoDTO> response = emprestimoService.listarTodos();
         return ResponseEntity.ok(response);
     }
 
