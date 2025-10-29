@@ -1,14 +1,13 @@
 package lopesantonio.com.de.biblioteca.service;
 
 import lopesantonio.com.de.biblioteca.model.dto.LivroDTO;
-import lopesantonio.com.de.biblioteca.model.dto.UsuarioDTO;
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
+import lopesantonio.com.de.biblioteca.model.entity.StatusLivro;
 import lopesantonio.com.de.biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class LivroService {
@@ -27,7 +26,7 @@ public class LivroService {
         livro.setTitulo(request.titulo());
         livro.setGenero(request.genero());
         livro.setAutor(request.autor());
-        livro.setStatus(Livro.StatusLivro.DISPONIVEL);
+        livro.setStatus(StatusLivro.DISPONIVEL);
         livroRepository.save(livro);
         return request;
     }

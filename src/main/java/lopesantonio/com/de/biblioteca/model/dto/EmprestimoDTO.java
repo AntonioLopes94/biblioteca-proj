@@ -13,17 +13,20 @@ public record EmprestimoDTO(
         Usuario usuario,
         LocalDate dataEmprestimo,
         LocalDate dataDevolucao,
-        LocalDate dataDevolucaoPrevista
+        LocalDate dataDevolucaoPrevista,
+        double multa
 ) {
+
     public static EmprestimoDTO fromEntity(Emprestimo emprestimo){
-                return new EmprestimoDTO(
+        return new EmprestimoDTO(
                 emprestimo.getId(),
                 emprestimo.getLivro(),
                 emprestimo.getUsuario(),
                 emprestimo.getDataEmprestimo(),
                 emprestimo.getDataDevolucao(),
-                emprestimo.getDataDevolucaoPrevista()
-                );
+                emprestimo.getDataDevolucaoPrevista(),
+                emprestimo.getMulta()
+        );
     }
 
 

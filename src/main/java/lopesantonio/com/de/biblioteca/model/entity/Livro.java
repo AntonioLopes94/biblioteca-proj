@@ -20,7 +20,7 @@ public class Livro {
     private String genero;
     @Column(name = "status", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
-    private StatusLivro status = StatusLivro.DISPONIVEL;
+    private StatusLivro status;
 
     @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Emprestimo> emprestimos = new ArrayList<>();
@@ -29,10 +29,6 @@ public class Livro {
         return status;
     }
 
-    public enum StatusLivro {
-        EMPRESTADO,
-        DISPONIVEL
-    }
 
     public void setStatus(){}
 

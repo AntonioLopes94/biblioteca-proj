@@ -1,6 +1,7 @@
 package lopesantonio.com.de.biblioteca.model.dto;
 
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
+import lopesantonio.com.de.biblioteca.model.entity.StatusLivro;
 
 import java.util.List;
 
@@ -9,8 +10,7 @@ public record LivroDTO(
         String titulo,
         String autor,
         String genero,
-        Livro.StatusLivro status) {
-
+        StatusLivro status) {
 
 
     public static LivroDTO fromEntity(Livro livro) {
@@ -28,5 +28,6 @@ public record LivroDTO(
                 .map(LivroDTO::fromEntity)
                 .toList();
     }
+
 
 }

@@ -1,6 +1,7 @@
 package lopesantonio.com.de.biblioteca;
 
 import lopesantonio.com.de.biblioteca.model.entity.Livro;
+import lopesantonio.com.de.biblioteca.model.entity.StatusLivro;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,23 +18,23 @@ class LivroTest{
         livro.setTitulo("Dom Casmurro");
         livro.setAutor("Machado de Assis");
         livro.setGenero("Terror");
-        livro.setStatus(Livro.StatusLivro.DISPONIVEL);
+        livro.setStatus(StatusLivro.DISPONIVEL);
 
         assertEquals(1L, livro.getId());
         assertEquals("Dom Casmurro", livro.getTitulo());
         assertEquals("Machado de Assis", livro.getAutor());
         assertEquals("Terror", livro.getGenero());
-        assertEquals(Livro.StatusLivro.DISPONIVEL, livro.getStatus());
+        assertEquals(StatusLivro.DISPONIVEL, livro.getStatus());
     }
 
     @Test
     @DisplayName("Should create a book with EMPRESTADO status")
     void testCriarLivroComStatusEmprestado(){
         Livro livro = new Livro();
-        livro.setStatus(Livro.StatusLivro.EMPRESTADO);
+        livro.setStatus(StatusLivro.EMPRESTADO);
 
-        assertEquals(Livro.StatusLivro.EMPRESTADO, livro.getStatus());
-        assertNotEquals(Livro.StatusLivro.DISPONIVEL, livro.getStatus());
+        assertEquals(StatusLivro.EMPRESTADO, livro.getStatus());
+        assertNotEquals(StatusLivro.DISPONIVEL, livro.getStatus());
     }
 
     @Test

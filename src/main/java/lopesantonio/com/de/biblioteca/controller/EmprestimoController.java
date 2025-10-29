@@ -26,9 +26,8 @@ public class EmprestimoController {
     @PostMapping("/{idUsuario}-{idLivro}")
     public ResponseEntity<?> criarEmprestimo(@PathVariable Long idUsuario, @PathVariable Long idLivro){
         try {
-            Emprestimo emprestimoRegistro = emprestimoService.registrarEmprestimo(idUsuario, idLivro);
-            EmprestimoDTO emprestimoDTO = EmprestimoDTO.fromEntity(emprestimoRegistro);
-            return ResponseEntity.ok(emprestimoDTO);
+            EmprestimoDTO response = emprestimoService.registrarEmprestimo(idUsuario, idLivro);
+            return ResponseEntity.ok(response);
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Erro: "+ e.getMessage());
         }
