@@ -1,5 +1,6 @@
 package lopesantonio.com.de.biblioteca.model.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class Usuario {
     private String telefone;
     @Column(name = "multa_acumulada", columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
     private double multaAcumulada;
-
+    @Column(name = "senha", nullable = false)
+    private String senha;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
@@ -56,4 +58,13 @@ public class Usuario {
     public void setMultaAcumulada(double multaAcumulada) {
         this.multaAcumulada = multaAcumulada;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }

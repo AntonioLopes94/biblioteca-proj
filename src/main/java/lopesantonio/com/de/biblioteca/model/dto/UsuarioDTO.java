@@ -10,7 +10,8 @@ public record UsuarioDTO(
         String nome,
         String email,
         String telefone,
-        double multaAcumulada
+        double multaAcumulada,
+        String senha
 ) {
 
     public static UsuarioDTO fromEntity(Usuario usuario){
@@ -19,7 +20,8 @@ public record UsuarioDTO(
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getTelefone(),
-                usuario.getMultaAcumulada()
+                usuario.getMultaAcumulada(),
+                usuario.getSenha()
         );
     }
 

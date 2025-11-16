@@ -31,7 +31,7 @@ public class EmprestimoService {
     private double calcularMulta(Long diasDeAtraso){
         return diasDeAtraso * 0.75;
     }
-    public Emprestimo registrarDevolucao(Long emprestimoId, LocalDate devolucaoEfetiva){
+    public EmprestimoDTO registrarDevolucao(Long emprestimoId, LocalDate devolucaoEfetiva){
         Emprestimo emprestimo = emprestimoRepository.findById(emprestimoId).
                 orElseThrow(() -> new IllegalArgumentException("Emprestimo não encontrado"));
         emprestimo.setDevolucaoEfetiva(devolucaoEfetiva);
@@ -46,8 +46,9 @@ public class EmprestimoService {
         Livro livro = emprestimo.getLivro();
         livro.setStatus(StatusLivro.DISPONIVEL);
         livroRepository.save(livro);
-        Emprestimo emprestimoAtualizado = emprestimoRepository.save(emprestimo);
-        return emprestimoAtualizado;
+        emprestimoRepository.save(emprestimo);
+        EmprestimoDTO response = EmprestimoDTO.fromEntity(emprestimo);
+        return response;
     }
 
     public EmprestimoDTO registrarEmprestimo(Long idUsuario, Long idLivro){
