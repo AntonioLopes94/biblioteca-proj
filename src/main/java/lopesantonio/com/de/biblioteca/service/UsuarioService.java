@@ -1,6 +1,5 @@
 package lopesantonio.com.de.biblioteca.service;
 
-import lopesantonio.com.de.biblioteca.config.SecurityConfig;
 import lopesantonio.com.de.biblioteca.model.dto.UsuarioDTO;
 import lopesantonio.com.de.biblioteca.model.entity.Usuario;
 import lopesantonio.com.de.biblioteca.repository.UsuarioRepository;
@@ -30,7 +29,7 @@ public class UsuarioService {
         usuario.setEmail(request.email());
         usuario.setTelefone(request.telefone());
         usuario.setMultaAcumulada(request.multaAcumulada());
-        usuario.setSenha(passwordEncoder.encode(request.senha()));
+        usuario.setSenha(request.senha());
         usuarioRepository.save(usuario);
         return request;
     }
